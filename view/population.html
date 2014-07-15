@@ -1,0 +1,10 @@
+<div>
+    <ul ng-controller="WorldCtrl">
+        <li ng-repeat="country in countries">
+            {{country.name}} has population of {{country.population}} million,
+            {{worldsPercentage(country.population)}} % of the World's population
+        </li>
+        <hr>
+        World's population : {{population}} million
+    </ul>
+</div>

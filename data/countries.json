@@ -1,0 +1,26 @@
+[
+    {
+      "countryName" : "Iraq",
+      "countryCode" : "IRQ",
+      "continent" : "Asia",
+      "currency" : "U.S. Dollar"
+    },
+    {
+      "countryName" : "Iran",
+      "countryCode" : "IRN",
+      "continent" : "Asia",
+      "currency" : "Rial"
+    },
+    {
+      "countryName" : "Afghanistan",
+      "countryCode" : "AFG",
+      "continent" : "Asia",
+      "currency" : "Afghani"
+    },
+    {
+        "countryName" : "United States of America",
+        "countryCode" : "USA",
+        "continent" : "North America",
+        "currency" : "U.S. Dollar"
+    }
+]
