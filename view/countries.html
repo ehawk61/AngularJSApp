@@ -1,5 +1,37 @@
 <div>
-    <table data-ng-table class="table table-hover">        
-        <tr data-ng-repeat="country in countries"><td data-title="'Country'">{{country.countryName}}</td><td data-title="'Country Code'">{{country.countryCode}}</td><td data-title="'Continent'">{{country.continent}}</td><td data-title="'Currency'">{{country.currency}}</td></tr>
+    <table data-ng-table="tableParams" class="table row-clickable">        
+        <tr data-ng-repeat="country in $data">
+            <td data-title="'Country Name'" sortable="'countryName'">
+                <a href='#/countries/{{country.countryName}}/details'>{{country.countryName}}</a>
+            </td>
+            <td data-title="'Country Code'" sortable="'countryCode'">
+                {{country.countryCode}}
+            </td>
+            <td data-title="'Continent'" sortable="'continent'">
+                {{country.continent}}
+            </td>
+            <td data-title="'Currency'" sortable="'currency'">
+                {{country.currency}}
+            </td>
+        </tr>
     </table>
+    <script type="text/ng-template" id="custom/pager">
+    	<ul class ="pager ng-cloak">
+    		<li data-ng-repeat="page in pages"
+    		         data-ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                     data-ng-show="page.type == 'prev' || page.type == 'next'" data-ng-switch="page.type">
+                     <a data-ng-switch-when="prev" data-ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+                     <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+            </li>
+            <li> 
+            <div class="btn-group">
+                <button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)" class="btn btn-default">10</button>
+                <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)" class="btn btn-default">25</button>
+                <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)" class="btn btn-default">50</button>
+                <button type="button" ng-class="{'active':params.count() == 100}" ng-click="params.count(100)" class="btn btn-default">100</button>
+            </div>
+            </li>
+    	</ul>
+    </script>
 </div>
+

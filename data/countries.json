@@ -3,24 +3,29 @@
       "countryName" : "Iraq",
       "countryCode" : "IRQ",
       "continent" : "Asia",
-      "currency" : "U.S. Dollar"
+      "currency" : "U.S. Dollar",
+      "wikimedia" : "f/f6/Flag_of_Iraq.svg"
     },
     {
       "countryName" : "Iran",
       "countryCode" : "IRN",
       "continent" : "Asia",
-      "currency" : "Rial"
+      "currency" : "Rial",
+      "wikimedia" : "c/ca/Flag_of_Iran.svg"
     },
     {
       "countryName" : "Afghanistan",
       "countryCode" : "AFG",
       "continent" : "Asia",
-      "currency" : "Afghani"
+      "currency" : "Afghani",
+      "wikimedia" : "9/9a/Flag_of_Afghanistan.svg"
     },
     {
         "countryName" : "United States of America",
         "countryCode" : "USA",
         "continent" : "North America",
-        "currency" : "U.S. Dollar"
+        "currency" : "U.S. Dollar",
+        "wikimedia" : "a/a4/Flag_of_the_United_States.svg"
     }
+    
 ]

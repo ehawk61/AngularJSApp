@@ -5,6 +5,7 @@ var domain = require('domain');
 var http = require('http');
 var path = require('path');
 var mongoclient = require('mongodb');
+var Grid = mongoclient.Grid;
 var fs = require('fs');
 var app = express();
 var parsedOptions = minimist(process.argv.slice(2));
@@ -126,7 +127,7 @@ d.run(function() {
                     db.collection(schema).drop(function(err, value) {
                         if (err) {
                             console.log(schema + " not found. Creating.");
-                        }
+                        }                    
                         db.createCollection(schema, function(err, collection) {
                             db.collection(schema).insert(jsonData, function(err, data) {
                                 if (err) {
@@ -158,6 +159,8 @@ d.run(function() {
 
 
         });
+
+       
 
         http.createServer(app).listen(app.get('port'), function() {
             console.log("Express Web listening on port: " + app.get('port'));
