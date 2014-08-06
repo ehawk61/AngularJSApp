@@ -1,26 +1,25 @@
-function AllCountryCtrl($http, $scope, $filter, ngTableParams){
+function AllCountryCtrl($scope, $filter, CountryService, ngTableParams){         
+    $scope.data = {};
     
-    $http.get('/countries')
-    .success(function(data){                       
-            $scope.tableParams = new ngTableParams({
-                page:1,
-                count:data.length/2,
-                sorting: {
-                    countryName: 'asc'
-                }
-                
-            },{
-                total: data.length,
-                getData: function($defer, params){
-                    var orderedData = params.sorting() ?
-                                $filter('orderBy')(data, params.orderBy()) :
-                                data;
-                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }        
-            });          	
-    })
-    .error(function(data){
-        console.log('Error: '+ data);
-    });  
+    CountryService.query(function(response){         
+        console.log(response);
+        $scope.tableParams = new ngTableParams({
+            page:1,
+            count:response.length/2,
+            sorting:{
+                countryName: 'asc'
+            }
+        },{
+            total:response.length,
+            getData: function($defer, params){
+                var orderedData = params.sorting() ?
+                            $filter('orderBy')(response, params.orderBy()) : response;
+                $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));           
+            }
+        });
+
+    });
+
     
+     
 };

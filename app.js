@@ -73,26 +73,8 @@ d.run(function() {
 
             });
         });
-
+       
         app.get('/countries/:countryName',function(req, res){
-            mongoclient.connect(mongoUrl, function(err,db){
-               if(err)
-                throw err;
-               var collection = db.collection('countries');
-
-               console.log("$regex:"+ req.params.countryName +", $options:'i'");
-               collection.find({countryName: {$regex: req.params.countryName, $options:'i'}}).toArray(function(err,docs){
-                   if(err)
-                      throw err;
-                   console.log("Selective countries...");
-                   console.log(docs);
-                   db.close();
-                   res.send(docs);
-               });
-            });
-        });
-
-        app.get('/countries/:countryName/details',function(req, res){
             mongoclient.connect(mongoUrl, function(err,db){
                 if(err)
                     throw err;
@@ -160,9 +142,7 @@ d.run(function() {
 
         });
 
-       
-
-        http.createServer(app).listen(app.get('port'), function() {
+       http.createServer(app).listen(app.get('port'), function() {
             console.log("Express Web listening on port: " + app.get('port'));
         });
 

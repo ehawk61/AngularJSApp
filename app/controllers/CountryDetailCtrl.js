@@ -1,14 +1,9 @@
-function CountryDetailCtrl($scope, $http,$routeParams){
+function CountryDetailCtrl($scope,$routeParams, CountryService){
     $scope.view = {};
     console.log($routeParams.countryName);
-    console.log("Searching for..." + $routeParams.countryName);
-    $http.get('/countries/'+$routeParams.countryName).success(function(data){
-        $scope.countries = data;
-        console.log(data);
-    })
-        .error(function(data){
-            console.log('Error: ' + data);
-        });
+    console.log("Searching for..." + $routeParams.countryName);    
 
-
+    CountryService.query({countryName:$routeParams.countryName}, function(response){
+        $scope.countries = response;
+    });   
 };

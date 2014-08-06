@@ -1,8 +1,8 @@
 <div>
-    <table data-ng-table="tableParams" class="table row-clickable">        
+    <table data-ng-table="tableParams" class="table">        
         <tr data-ng-repeat="country in $data">
             <td data-title="'Country Name'" sortable="'countryName'">
-                <a href='#/countries/{{country.countryName}}/details'>{{country.countryName}}</a>
+                <a href ="#/countries/{{country.countryName}}">{{country.countryName}} </a>               
             </td>
             <td data-title="'Country Code'" sortable="'countryCode'">
                 {{country.countryCode}}
