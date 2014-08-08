@@ -5,7 +5,6 @@ var domain = require('domain');
 var http = require('http');
 var path = require('path');
 var mongoclient = require('mongodb');
-var Grid = mongoclient.Grid;
 var fs = require('fs');
 var app = express();
 var parsedOptions = minimist(process.argv.slice(2));
@@ -91,7 +90,21 @@ d.run(function() {
                 });
             });
         });
+        app.delete('/countries/:countryName',function(req, res){
+            mongoclient.connect(mongoUrl, function(err,db){
+                if(err)
+                    throw err;
+                var collection = db.collection('countries');
 
+                console.log(req.params.countryName);
+                collection.remove({countryName: req.params.countryName}, function(err){
+                    if(err)
+                        throw err;
+                });
+                console.log("deleted "+ req.params.countryName);
+                db.close();                
+            });
+        });
         function loadSchema(schema, req, res) {
 
             var fileName = __dirname + '/data/' + schema + '.json';

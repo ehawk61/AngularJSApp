@@ -18,7 +18,9 @@
            
         
     </div>
-    <button type="button" class="btn btn-danger">Delete {{country.countryName}} from DB</button>
+
+    <button type="button" class="btn btn-danger" data-ng-click="delete(country)">Delete {{country.countryName}} from DB</button>
     <button type="button" class="btn btn-warning">Edit {{country.countryName}}</button>
+    <div class ="alert"></div>
 </div>
 

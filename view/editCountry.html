@@ -1,0 +1,27 @@
+<div class="form-inline" data-ng-form="searchForm">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-disabled="searchForm.$invalid">Submit</button>
+    </div>
+    <div class ="form-group">
+        <button type="reset" class="btn btn-primary" data-ng-click="reset()" data-ng-disabled="searchForm.$invalid">Reset</button>
+    </div>
+</div>
+<br/>
+<div data-ng-repeat="country in countries">
+	<div class="form-group">
+        Country Name:
+        <input name="countryName" type="text" class="form-control" data-ng-model="country.countryName" data-ng-required="true">
+    </div>
+    <div class="form-group">
+        Country Code: 
+        <input name="countryCode" type="text" class="form-control" data-ng-model="country.countryCode" data-ng-required="true">
+    </div>
+    <div class="form-group">
+        Continent:
+        <input name="continent" type="text" class="form-control" data-ng-model="country.continent" data-ng-required="true">
+    </div>
+    <div class="form-group">
+        Currency:
+        <input name="Currency" type="text" class="form-control" data-ng-model="country.currency" data-ng-required="true">
+    </div>
+</div>
