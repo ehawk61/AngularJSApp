@@ -11,10 +11,18 @@ function CountryDetailCtrl($scope,$routeParams, CountryService, $location){
         var capture = confirm("Are you sure you want to delete "+$routeParams.countryName+"?");
         if (capture == true)
         {
-            alert("Deleting " + $routeParams.countryName+"...");
             CountryService.delete({countryName:$routeParams.countryName});
+            $location.path('/countries');
         }
         
     };
+
+    $scope.edit = function(){
+        var capture = confirm("Are you sure you want to edit "+$routeParams.countryName+"?");
+        if (capture == true)
+        {            
+            $location.path('/countries/'+$routeParams.countryName+"/edit");
+        }
+    }
 
 };

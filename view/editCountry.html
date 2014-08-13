@@ -1,6 +1,6 @@
 <div class="form-inline" data-ng-form="searchForm">
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" data-ng-click="submit()" data-ng-disabled="searchForm.$invalid">Submit</button>
+        <button type="submit" class="btn btn-warning" data-ng-click="submit()" data-ng-disabled="searchForm.$invalid">Submit</button>
     </div>
     <div class ="form-group">
         <button type="reset" class="btn btn-primary" data-ng-click="reset()" data-ng-disabled="searchForm.$invalid">Reset</button>
@@ -23,5 +23,13 @@
     <div class="form-group">
         Currency:
         <input name="Currency" type="text" class="form-control" data-ng-model="country.currency" data-ng-required="true">
+    </div>
+</div>
+<div class="form-inline" data-ng-form="searchForm">
+    <div class="form-group">
+        <button type="submit" class="btn btn-warning" data-ng-click="submit()" data-ng-disabled="searchForm.$invalid">Submit</button>
+    </div>
+    <div class ="form-group">
+        <button type="reset" class="btn btn-primary" data-ng-click="reset()" data-ng-disabled="searchForm.$invalid">Reset</button>
     </div>
 </div>

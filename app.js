@@ -105,6 +105,29 @@ d.run(function() {
                 db.close();                
             });
         });
+
+        app.put('/countries/:countryName', function(req, res){
+            mongoclient.connect(mongoUrl, function(err,db){
+                if(err)
+                    throw err;
+                var collection = db.collection('countries');
+                console.log(req.params.countryName);
+                console.log(req.body.countryCode);
+                collection.update({countryName:req.params.countryName},
+                    {countryName:req.body.countryName,
+                     countryCode:req.body.countryCode,
+                     continent:req.body.continent,
+                     currency:req.body.currency,
+                     wikimedia:req.body.wikimedia   }, function(err){
+                        if(err)
+                            throw err;
+                            res.send(400,'Update error');
+                });
+                console.log("Updated "+req.params.countryName);
+                res.send(200);
+            });    
+
+        });
         function loadSchema(schema, req, res) {
 
             var fileName = __dirname + '/data/' + schema + '.json';

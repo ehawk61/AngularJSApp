@@ -19,6 +19,8 @@ intro.config(function($routeProvider){
 })
 
 intro.factory('CountryService', function($resource){
-    return $resource('/countries/:countryName',{});
+    return $resource('/countries/:countryName', {}, {
+        update: { method: 'PUT', params:{countryName:'@countryName'}}
+    });
 });
 

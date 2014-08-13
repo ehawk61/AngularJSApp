@@ -10,9 +10,13 @@
             <td data-title="'Continent'" sortable="'continent'">
                 {{country.continent}}
             </td>
-            <td data-title="'Currency'" sortable="'currency'">
+            <td data-title="'Currency'" sortable="'currency'" >
                 {{country.currency}}
             </td>
+            <td data-title="'Admin'">
+                <button type="button" class="btn btn-danger btn-small"><span class="glyphicon glyphicon-trash"></button>
+                <button type="button" class="btn btn-warning btn-small"><span class="glyphicon glyphicon-pencil"></button>
+            </td>    
         </tr>
     </table>
     <script type="text/ng-template" id="custom/pager">

@@ -1,5 +1,4 @@
-function EditCountryCtrl($scope,$routeParams, CountryService, $location){
-	$scope.view = {};
+function EditCountryCtrl($scope, $routeParams, CountryService, $location){	
     console.log($routeParams.countryName);
     console.log("Searching for..." + $routeParams.countryName);    
 
@@ -8,4 +7,10 @@ function EditCountryCtrl($scope,$routeParams, CountryService, $location){
     });
 
     
+    $scope.submit= function(){
+    	alert("Updating "+$routeParams.countryName+"...");
+        CountryService.update({countryName:$routeParams.countryName},$scope.countries[0]);
+        $location.path("/countries");
+    }
+        
 };
