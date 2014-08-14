@@ -110,10 +110,12 @@ d.run(function() {
             mongoclient.connect(mongoUrl, function(err,db){
                 if(err)
                     throw err;
-                var collection = db.collection('countries');
-                console.log(req.params.countryName);
-                console.log(req.body.countryCode);
-                collection.update({countryName:req.params.countryName},
+                var collection = db.collection('countries');                              
+                console.log(req.params.countryName);               
+                console.log(req.body._id)
+                var lookupId = new require('mongodb').ObjectID(req.body._id);
+                
+                collection.update({_id:lookupId},
                     {countryName:req.body.countryName,
                      countryCode:req.body.countryCode,
                      continent:req.body.continent,

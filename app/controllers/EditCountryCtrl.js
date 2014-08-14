@@ -8,8 +8,11 @@ function EditCountryCtrl($scope, $routeParams, CountryService, $location){
 
     
     $scope.submit= function(){
-    	alert("Updating "+$routeParams.countryName+"...");
+    	bootbox.alert("Updating "+$routeParams.countryName+"...");
         CountryService.update({countryName:$routeParams.countryName},$scope.countries[0]);
+        $location.path("/countries");
+    }
+    $scope.back= function(){
         $location.path("/countries");
     }
         

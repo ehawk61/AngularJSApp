@@ -8,21 +8,28 @@ function CountryDetailCtrl($scope,$routeParams, CountryService, $location){
     });
     
     $scope.delete = function(){
-        var capture = confirm("Are you sure you want to delete "+$routeParams.countryName+"?");
-        if (capture == true)
-        {
-            CountryService.delete({countryName:$routeParams.countryName});
-            $location.path('/countries');
-        }
+       
+        bootbox.confirm("Are you sure you want to delete "+$routeParams.countryName+"?",function(response){
+            if (response == true)
+            {
+                CountryService.delete({countryName:$routeParams.countryName});
+                $location.path('/countries');
+            }
+        });
+        
+        
         
     };
 
     $scope.edit = function(){
-        var capture = confirm("Are you sure you want to edit "+$routeParams.countryName+"?");
-        if (capture == true)
-        {            
-            $location.path('/countries/'+$routeParams.countryName+"/edit");
-        }
+        bootbox.confirm("Are you sure you want to edit "+$routeParams.countryName+"?", function(capture){
+            if (capture == true)
+            {            
+                $location.path('/countries/'+$routeParams.countryName+"/edit");
+            }     
+        });
+        
+        
     }
 
 };

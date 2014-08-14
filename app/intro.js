@@ -1,4 +1,4 @@
-var intro = angular.module("intro",["ngRoute","ngTable","ngResource","ngBootbox"]);
+var intro = angular.module("intro",["ngRoute","ngTable","ngResource"]);
 
 intro.config(function($routeProvider){
     $routeProvider.when("/search",{
