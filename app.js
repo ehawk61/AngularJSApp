@@ -90,6 +90,24 @@ d.run(function() {
                 });
             });
         });
+
+        app.get('/search',function(req, res){
+            mongoclient.connect(mongoUrl, function(err,db){
+                if(err)
+                    throw err;
+                var collection = db.collection('countries');
+               
+                collection.find({countryName:{$regex: req.query.countryName}}).toArray(function(err, docs){
+                    if(err)
+                        throw err;
+                    console.log("Returned Results from " +req.query.countryName+"...");
+                    console.log(docs);
+                    db.close();
+                    res.send(docs);
+                });
+            });
+        });
+
         app.delete('/countries/:countryName',function(req, res){
             mongoclient.connect(mongoUrl, function(err,db){
                 if(err)
