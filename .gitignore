@@ -1,2 +1,5 @@
-# node_modules file
+#node_modules folder (npm install of the app will re-populate this folder)
 node_modules/
+
+#Bower component folder (bower install of the app will re-populate this folder)
+bower_components/
