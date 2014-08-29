@@ -1,0 +1,29 @@
+{
+  "name": "AngularJSApp",
+  "version": "0.0.0",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "authors": [
+    "Jonathan L. Meek & Henry Mbadiwe"
+  ],
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.22",
+    "angular-animate": "~1.2.22",
+    "angular-motion": "~0.3.3",
+    "angular-strap": "~2.0.5",
+    "bootbox": "~4.3.0",
+    "bootstrap": "~3.2.0",
+    "jquery": "~2.1.1"
+  }
+}

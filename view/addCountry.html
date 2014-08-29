@@ -1,0 +1,36 @@
+<div class="form-inline">
+    <div class="form-group">
+        <button type="submit" class="btn btn-warning"  data-ng-click="createCountry()" data-ng-disabled="addForm.$invalid">Submit</button>
+    </div>    
+</div>
+<br/>
+
+<div data-ng-form="addForm">
+  <div class="form-group">
+        Country Name:
+        <input name="countryName" type="text" class="form-control" data-ng-required="true" ng-model="country.countryName">
+  </div>
+  <div class="form-group">
+        Country Code: 
+        <input name="countryCode" type="text" class="form-control" data-ng-required="true" ng-model="country.countryCode">
+  </div>
+  <div class="form-group">
+        Continent:
+        <input name="continent" type="text" class="form-control" data-ng-required="true" ng-model="country.continent">
+  </div>
+  <div class="form-group">
+        Currency:
+        <input name="Currency" type="text" class="form-control" data-ng-required="true" ng-model="country.currency">
+  </div>
+  <div class="form-group">
+        Flag (Encoded base64String only):
+        <input name="wikimedia" type="text" class="form-control" data-ng-required="false" ng-model="country.wikimedia">
+  </div>
+</div>
+
+<div class="form-inline">
+    <div class="form-group">
+        <button type="submit" class="btn btn-warning" data-ng-click="createCountry()" data-ng-disabled="addForm.$invalid">Submit</button>
+    </div>
+   
+</div>

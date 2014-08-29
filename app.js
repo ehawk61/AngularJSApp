@@ -148,6 +148,27 @@ d.run(function() {
             });    
 
         });
+	
+	app.post('/add', function(req, res){
+	  mongoclient.connect(mongoUrl, function(err,db){
+	    if(err)
+	      throw err;
+	    var collection = db.collection('countries');
+	    
+	    console.log(req.body);
+	    collection.insert({countryName:req.body.countryName,
+                     countryCode:req.body.countryCode,
+                     continent:req.body.continent,
+                     currency:req.body.currency, wikimedia:req.body.wikimedia},function(err){
+			if(err)
+			  throw err;
+			  res.send(400, 'Add Error');
+		     });
+	    console.log("Added " + req.body.countryName);
+	    res.send(200);
+	  });
+	});
+	
         function loadSchema(schema, req, res) {
 
             var fileName = __dirname + '/data/' + schema + '.json';

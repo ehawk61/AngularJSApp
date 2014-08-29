@@ -1,4 +1,4 @@
-var intro = angular.module("intro",["ngRoute","ngTable","ngResource"]);
+var intro = angular.module("intro",["ngRoute","ngTable","ngResource","mgcrea.ngStrap"]);
 
     intro.config(function($routeProvider){
         $routeProvider.when("/search",{
@@ -13,7 +13,10 @@ var intro = angular.module("intro",["ngRoute","ngTable","ngResource"]);
         }).when("/countries/:countryName/edit",{
             templateUrl:"view/editCountry.html",
             controller:EditCountryCtrl
-        }).otherwise({
+        }).when("/add",{
+	    templateUrl:"view/addCountry.html",
+	    controller:AddCountryCtrl
+	}).otherwise({
             redirectTo:"/search"
         })
     })
@@ -26,6 +29,12 @@ var intro = angular.module("intro",["ngRoute","ngTable","ngResource"]);
         
     intro.factory('CountrySearch', function($resource){
         return $resource('/search',{},{});
+    });
+    
+    intro.factory('CountryAdd', function($resource){
+	return $resource('/add',{}, {
+	  add:{ method: 'POST'}
+	});
     });
 
 
