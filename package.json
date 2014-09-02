@@ -4,16 +4,17 @@
   "description": "Node simple app for hosting TN",
   "main": "app.js",
   "dependencies": {
+    "bower": "~1.3.9",
+    "bson": "^0.2.12",
+    "connect-restreamer": "~1.0.0",
+    "domain": "~0.2.8",
     "express": "~3.5.0",
+    "he": "~0.4.1",
     "http": "0.0.0",
     "http-proxy": "~1.0.2",
-    "domain": "~0.2.8",
     "minimist": "0.0.8",
-    "connect-restreamer": "~1.0.0",
     "mongodb": "~1.4.0",
-    "underscore": "~1.6.0",
-    "he": "~0.4.1",
-    "bower": "~1.3.9"
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
