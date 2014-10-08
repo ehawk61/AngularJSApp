@@ -21,9 +21,7 @@ module.exports = function(config) {
       'bower_components/jquery/dist/jquery.min.js',
       'bower_components/bootbox/bootbox.js',
       'bower_components/bootstrap/dist/js/bootstrap.min.js',
-      'vendor/angular-route.js',
-      'vendor/angular-resource.js',
-      'vendor/ng-table.js',
+      'vendor/*.js',
       'app/intro.js',
       'app/controllers/*.js',
       'spec/testUnit.js'
