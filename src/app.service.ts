@@ -3,7 +3,7 @@ import * as countryData from './countries.json';
 import * as mongoose from 'mongoose'; 
 import { prop, getModelForClass, ReturnModelType } from '@typegoose/typegoose'; 
 
-class Country {
+export class Country {
   @prop()
   countryName?: string 
 
@@ -21,6 +21,10 @@ class Country {
 
   public static async findByCountryName(this: ReturnModelType<typeof Country>, countryName: string){
     return this.find({ countryName }).exec();
+  }
+
+  public static async findOneByCountryName(this: ReturnModelType<typeof Country>, countryName: string){
+    return this.findOne({ countryName }).exec(); 
   }
 }
 
@@ -54,6 +58,28 @@ export class AppService {
    
     
     return 'Testing out Nest Data ' + countries;
+  }
+
+  async getCountry(country :string): Promise<Country> {
+    var mongoDBUrl = process.env.MONGO_URL || "localhost"
+    var mongoDBPort = process.env.MONGO_PORT || 27017
+    var mongoDBName = process.env.MONGO_DB_NAME || "countries"
+    
+    const countryModel = getModelForClass(Country)
+    mongoose.connect(`mongodb://${mongoDBUrl}:${mongoDBPort}/${mongoDBName}`, {useNewUrlParser: true, useUnifiedTopology: true})
+    
+    return await countryModel.findOneByCountryName(country); 
+  }
+
+  async getAllCountries(): Promise<Country[]>{
+    var mongoDBUrl = process.env.MONGO_URL || "localhost"
+    var mongoDBPort = process.env.MONGO_PORT || 27017
+    var mongoDBName = process.env.MONGO_DB_NAME || "countries"
+    
+    const countryModel = getModelForClass(Country)
+    mongoose.connect(`mongodb://${mongoDBUrl}:${mongoDBPort}/${mongoDBName}`, {useNewUrlParser: true, useUnifiedTopology: true})
+    
+    return await countryModel.find({}); 
   }
 
   async savingDataToDB(countryToBeAdded, countryModel){

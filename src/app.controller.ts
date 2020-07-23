@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Param } from '@nestjs/common';
+import { AppService, Country } from './app.service';
+
 
 @Controller()
 export class AppController {
@@ -12,5 +13,15 @@ export class AppController {
   @Get("/data")
   getData(): string {
     return this.appService.getData();
+  }
+
+  @Get("/countries/:countryName")
+  getCountry(@Param() params): Promise<Country> {
+    return this.appService.getCountry(params.countryName);
+  }
+  
+  @Get("/countries")
+  getCountries(): Promise<Country[]> {
+    return this.appService.getAllCountries(); 
   }
 }
