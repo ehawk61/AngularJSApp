@@ -1,49 +1,20 @@
 import { Injectable } from '@nestjs/common'; 
 import * as countryData from './countries.json';
 import * as mongoose from 'mongoose'; 
-import { prop, getModelForClass, ReturnModelType } from '@typegoose/typegoose'; 
-
-export class Country {
-  @prop()
-  countryName?: string 
-
-  @prop()
-  countryCode?: string
-
-  @prop()
-  continent?: string 
-
-  @prop()
-  currency?: string 
-
-  @prop()
-  wikimedia?: string
-
-  public static async findByCountryName(this: ReturnModelType<typeof Country>, countryName: string){
-    return this.find({ countryName }).exec();
-  }
-
-  public static async findOneByCountryName(this: ReturnModelType<typeof Country>, countryName: string){
-    return this.findOne({ countryName }).exec(); 
-  }
-}
+import { getModelForClass } from '@typegoose/typegoose'; 
+import { Country } from './model/Country'
 
 @Injectable()
 export class AppService {
   
-  
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   getData(): string {
     var mongoDBUrl = process.env.MONGO_URL || "localhost"
     var mongoDBPort = process.env.MONGO_PORT || 27017
     var mongoDBName = process.env.MONGO_DB_NAME || "countries"
+    var countries = ''
     
     const countryModel = getModelForClass(Country)
-    mongoose.connect(`mongodb://${mongoDBUrl}:${mongoDBPort}/${mongoDBName}`, {useNewUrlParser: true, useUnifiedTopology: true})
-    var countries = '';
+    mongoose.connect(`mongodb://${mongoDBUrl}:${mongoDBPort}/${mongoDBName}`, {useNewUrlParser: true, useUnifiedTopology: true});
     
     (async () =>{
       
@@ -66,8 +37,7 @@ export class AppService {
     var mongoDBName = process.env.MONGO_DB_NAME || "countries"
     
     const countryModel = getModelForClass(Country)
-    mongoose.connect(`mongodb://${mongoDBUrl}:${mongoDBPort}/${mongoDBName}`, {useNewUrlParser: true, useUnifiedTopology: true})
-    
+    mongoose.connect(`mongodb://${mongoDBUrl}:${mongoDBPort}/${mongoDBName}`, {useNewUrlParser: true, useUnifiedTopology: true});
     return await countryModel.findOneByCountryName(country); 
   }
 
@@ -87,6 +57,5 @@ export class AppService {
      if(exstingCountry === undefined){ await countryToBeAdded.save() }
      else{ console.log(`${countryToBeAdded.countryName} Already Exists`) }
   }
-
   
 }
