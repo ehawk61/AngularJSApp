@@ -14,12 +14,17 @@ export class CountryService{
   }
 
   async findOne(countryName: string): Promise<Country> {
-      return await this.countryModel.findOne({ 'countryName' : countryName }).exec()
-      ;
+      return await this.countryModel.findOne({ 'countryName' : countryName }).exec();
   }
 
   async createCountry(country: CountryDTO):Promise<Country>{
-    const createdCountry = new this.countryModel(country)
-    return createdCountry.save(); 
+    const countryAlreadyExists = await this.countryModel.findOne({'countryName' : country.countryName}).exec(); 
+    if(countryAlreadyExists){
+      throw new HttpException(`${country.countryName} already exists`, HttpStatus.CONFLICT)
+    } else {
+      const createdCountry = new this.countryModel(country)
+      return createdCountry.save();
+    }
+     
   }
 }   
