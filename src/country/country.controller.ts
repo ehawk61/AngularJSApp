@@ -2,6 +2,7 @@
 import { Body, Controller, Get, Post, Param, HttpException, HttpStatus, Res, NotFoundException } from '@nestjs/common'
 import { CountryService } from './country.service'
 import { Country } from './model/Country'
+import { CountryDTO } from './model/CountryDTO';
 
 @Controller('countries')
 export class CountryController{
@@ -12,6 +13,7 @@ export class CountryController{
         if(!countries) throw new HttpException(`Countries not found`, HttpStatus.NOT_FOUND)
         return res.status(HttpStatus.OK).json(countries); 
     }
+
     @Get(':countryName')
     async findOne(@Res() res, @Param() params): Promise<Country>{
         
@@ -21,5 +23,10 @@ export class CountryController{
         
     }
 
+    @Post()
+    async addNewCountry(@Res() res, @Body() newCountryToBeAdded: CountryDTO){
+        const newCountry = await this.countryService.createCountry(newCountryToBeAdded)
+        return res.status(HttpStatus.OK).json(newCountry); 
+    }
 
 }

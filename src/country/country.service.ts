@@ -2,6 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Country } from './model/Country';
+import { CountryDTO } from './model/CountryDTO';
 
 @Injectable()
 export class CountryService{
@@ -11,8 +12,14 @@ export class CountryService{
   async findAll(): Promise<Country[]> {
     return this.countryModel.find().exec();
   }
+
   async findOne(countryName: string): Promise<Country> {
       return await this.countryModel.findOne({ 'countryName' : countryName }).exec()
       ;
+  }
+
+  async createCountry(country: CountryDTO):Promise<Country>{
+    const createdCountry = new this.countryModel(country)
+    return createdCountry.save(); 
   }
 }   
