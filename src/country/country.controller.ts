@@ -1,5 +1,5 @@
 
-import { Body, Controller, Get, Post, Param } from '@nestjs/common'
+import { Body, Controller, Get, Post, Param, HttpException, HttpStatus, Res, NotFoundException } from '@nestjs/common'
 import { CountryService } from './country.service'
 import { Country } from './model/Country'
 
@@ -7,12 +7,19 @@ import { Country } from './model/Country'
 export class CountryController{
     constructor(private readonly countryService: CountryService) {}
     @Get()
-    async findAll(): Promise<Country[]> {
-        return this.countryService.findAll();
+    async findAll(@Res() res): Promise<Country[]> {
+        const countries = await this.countryService.findAll();
+        if(!countries) throw new HttpException(`Countries not found`, HttpStatus.NOT_FOUND)
+        return res.status(HttpStatus.OK).json(countries); 
     }
     @Get(':countryName')
-    async findOne(@Param() params): Promise<Country>{
-        return this.countryService.findOne(params.countryName)
+    async findOne(@Res() res, @Param() params): Promise<Country>{
+        
+        const country = await this.countryService.findOne(params.countryName)
+        if(!country) throw new HttpException(`${params.countryName} not found`, HttpStatus.NOT_FOUND)
+        return res.status(HttpStatus.OK).json(country);
+        
     }
+
 
 }
