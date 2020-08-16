@@ -2,9 +2,9 @@
   "name": "country-viewer",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Jonathan L Meek",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "GPL-2.0-only",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
