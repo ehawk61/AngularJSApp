@@ -37,8 +37,11 @@ export class CountryService{
     }
   }
 
-  async updateCountry(country: CountryDTO): Promise<Country> {
+  async updateCountry(countryName: string, country: CountryDTO): Promise<Country> {
     let query = {'countryName' : country.countryName}
+    if(countryName !== country.countryName) {
+      throw new HttpException(`${countryName} does not match ${country.countryName}`, HttpStatus.BAD_REQUEST)
+    }
     return await this.countryModel.findOneAndUpdate(query, country)
   }
 }   

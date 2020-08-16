@@ -1,5 +1,5 @@
 
-import { Body, Controller, Get, Post, Param, HttpException, HttpStatus, Res, NotFoundException, Delete, Put } from '@nestjs/common'
+import { Body, Controller, Get, Post, Param, HttpException, HttpStatus, Res, Delete, Put } from '@nestjs/common'
 import { CountryService } from './country.service'
 import { Country } from './model/Country'
 import { CountryDTO } from './model/CountryDTO';
@@ -33,6 +33,12 @@ export class CountryController{
     async deleteCountry(@Res() res, @Param() params) {
         const deletedCountry = await this.countryService.deleteCountry(params.countryName)
         return res.status(HttpStatus.OK).json(deletedCountry); 
+    }
+
+    @Put(':countryName')
+    async updateCountry(@Res() res, @Param() params, @Body() countryToBeUpated: CountryDTO){
+        const updatedCountry = await this.countryService.updateCountry(params.countryName, countryToBeUpated)
+        return res.status(HttpStatus.OK).json(updatedCountry)
     }
 
 }
