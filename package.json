@@ -1,24 +1,29 @@
 {
   "name": "country-viewer",
-  "workspaces":["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "version": "0.0.1",
   "description": "",
   "author": "Jonathan L Meek",
   "private": true,
   "license": "GPL-2.0-only",
   "scripts": {
-    "client:start": "yarn workspace client start", 
+    "frontend:start": "yarn workspace frontend start",
     "server:start": "yarn workspace server start",
-    "server:start:dev" : "yarn workspace server start:dev",
+    "server:start:dev": "yarn workspace server start:dev",
     "server:start:debug": "yarn workspace server start:debug",
-    "server:start:prod": "yarn workspace server start:prod",
+    "server:start:prod": "yarn workspace server build && yarn workspace server start:prod",
     "server:lint": "yarn workspace server lint",
     "server:test": "yarn workspace server test",
     "server:test:watch": "yarn workspace server test:watch",
     "server:test:cov": "yarn workspace server test:cov",
     "server:test:debug": "yarn workspace server test:debug",
-    "server:test:e2e": "yarn workspace server test:e2e"
+    "server:test:e2e": "yarn workspace server test:e2e",
+    "start": "concurrently --kill-others-on-fail \"yarn frontend:start\" \"yarn server:start\""
   },
-  "dependencies": {},
-  "devDependencies": {}    
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  },
+  "devDependencies": {}
 }
