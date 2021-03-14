@@ -25,8 +25,5 @@
   "dependencies": {
     "concurrently": "^5.3.0"
   },
-  "devDependencies": {},
-  "peerDependencies": {
-    "@testing-library/dom": "^7.24.2"
-  }
+  "devDependencies": {}
 }
